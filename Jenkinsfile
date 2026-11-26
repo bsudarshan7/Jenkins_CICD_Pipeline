@@ -6,7 +6,7 @@ pipeline {
         stage('Clone Code') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/bsudarshan7/Jenkins_CICD_Pipeline'
+                    url: 'https://github.com/bsudarshan7/Jenkins_CICD_Pipeline.git'
             }
         }
 
@@ -25,14 +25,14 @@ pipeline {
 
         stage('Run New Container') {
             steps {
-                sh 'docker run -d --name webapp -p 8080:80 devops-webapp:latest'
+                sh 'docker run -d --name webapp -p 8081:80 devops-webapp:latest'
             }
         }
 
         stage('Deployment Check') {
             steps {
                 sh 'docker ps'
-                sh 'curl http://localhost:8080'
+                sh 'curl http://localhost:8081'
             }
         }
     }
